@@ -1,0 +1,14 @@
+{% extends 'root.html' %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center">
+    <form method="post" class="w-100">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required><span class="ms-2">Примите условия и соглашения</span> <br>
+        <input class="btn btn-success w-25 mt-2" type="submit" value="Register">
+    </form>
+</div>
+{% endblock %}

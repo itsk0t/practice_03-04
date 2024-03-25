@@ -20,7 +20,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth/', include('auth.urls', namespace='auth'))
+    path('auth/', include('auth.urls', namespace='auth')),
+    path('vacancies/', include('vacancies.urls', namespace='vacancies')),
+    path('account/', include('account.urls', namespace='account')),
 ]
 
 if settings.DEBUG:

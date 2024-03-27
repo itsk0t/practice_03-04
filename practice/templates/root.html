@@ -35,25 +35,30 @@
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="#">Home</a>
                         </li>
+
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{% url 'vacancies:vac_list' %}">Vacancies</a>
                         </li>
+
                         {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{% url 'vacancies:vac_create' %}">Vacancies
                                 Create</a>
                         </li>
                         {% endif %}
+
                         {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{% url 'account:account' %}">Account</a>
                         </li>
                         {% endif %}
+
                         {% if user.is_authenticated %}
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{% url 'auth:logout' %}">Logout</a>
                         </li>
                         {% else %}
+
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{% url 'auth:register' %}">Register</a>
                         </li>

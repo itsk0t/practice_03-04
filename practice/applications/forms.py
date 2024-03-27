@@ -13,6 +13,6 @@ class ApplicationForm(forms.ModelForm):
         widgets = {
             'full_name': forms.TextInput(attrs={'class': 'form-control w-75', 'placeholder': 'ФИО'}),
             'phone_number': forms.TextInput(attrs={'class': 'form-control w-75', 'placeholder': 'Номер телефона'}),
-            'vacancies_id': forms.IntegerField(),
+            'vacancies_id': forms.Select(),
             'user_id': forms.IntegerField()
         }

@@ -41,6 +41,7 @@
                                 </p>
                                 <a href="{% url 'vacancies:vac_detail' vac.id %}" class="btn btn-primary">Detail</a>
                                 <a href="{% url 'vacancies:vac_delete' vac.id %}" class="btn btn-danger">Delete</a>
+                                <a href="{% url 'vacancies:vac_update' vac.id %}" class="btn btn-success">Update</a>
                                 <p class="card-text mt-4"><small class="text-body-secondary">{{ vac.date }}</small></p>
                             </div>
                         </div>

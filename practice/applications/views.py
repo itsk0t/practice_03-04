@@ -12,7 +12,7 @@ def application_view(request):
             applications.user_id = request.user
             applications.save()
 
-            # return redirect('account:account')
+            return redirect('account:account')
     else:
         form = ApplicationForm()
 

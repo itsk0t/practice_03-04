@@ -42,5 +42,5 @@ class VacanciesDeleteView(DeleteView):
 class VacanciesUpdateView(UpdateView):
     model = Vacancies
     template_name = 'vacancies/vac_create.html'
-
+    success_url = '/account/'
     form_class = VacanciesCreateForm

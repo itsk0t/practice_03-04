@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, DeleteView
 
+from applications.models import Application
 from vacancies.forms import VacanciesCreateForm
 from vacancies.models import Vacancies
 
@@ -30,3 +31,9 @@ def vacancies_create_view(request):
         form = VacanciesCreateForm()
 
     return render(request, 'vacancies/vac_create.html', {'form': form})
+
+
+class VacanciesDeleteView(DeleteView):
+    model = Vacancies
+    success_url = '/account/'
+    template_name = 'vacancies/vac_delete.html'

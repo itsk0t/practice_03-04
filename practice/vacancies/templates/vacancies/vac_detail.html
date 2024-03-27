@@ -12,7 +12,7 @@
             <div class="card-body">
                 <h5 class="card-title">
                     {{ vac_detail.title }} <br>
-                    {{ vac_detail.salary}}
+                    {{ vac_detail.salary}} &#8381;
                 </h5>
                 <p class="card-text">
                     <b>Сфера деятельности: </b>{{ vac_detail.field_activity }} <br>
@@ -27,7 +27,7 @@
                     {{ vac_detail.description }}
                 </p>
                 <p class="card-text mt-4"><small class="text-body-secondary">{{ vac_detail.date }}</small></p>
-                <a href="#" class="btn btn-primary">OK?</a>
+                <a href="{% url 'appli:appli' %}" class="btn btn-primary">OK?</a>
             </div>
         </div>
     </div>

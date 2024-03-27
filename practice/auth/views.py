@@ -23,4 +23,5 @@ class LoginUserView(LoginView):
     template_name = 'auth/login.html'
 
     def get_success_url(self):
-        return reverse_lazy('doc:doc_list')
+        return reverse_lazy('account:account')
+    

@@ -1,0 +1,56 @@
+        label {
+            display: none;
+        }
+
+        .custom_card {
+            text-decoration: none;
+        }
+
+        aside {
+            float: left;
+            /* background: #FFFAFA; */
+            width: 20%;
+            padding: 2.5%;
+            height: 100%;
+            color: #fff;
+            /* border-right: 5px solid #D3D3D3; */
+        }
+
+        aside h3 {
+            margin-top: 30px;
+            font-size: 28px;
+        }
+
+        aside ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        aside ul li {
+            color: #fff;
+            display: block;
+            margin-top: 20px;
+            transition: transform .6s ease;
+        }
+
+        aside ul li:hover, aside ul a:hover {
+            color: #ed5959;
+            text-decoration: none;
+            transform: scale(1.05);
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+        }
+
+        .logo_text {
+            font-size: 30px;
+            font-weight: 900;
+        }
+
+

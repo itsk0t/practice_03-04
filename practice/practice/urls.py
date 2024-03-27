@@ -23,6 +23,7 @@ urlpatterns = [
     path('auth/', include('auth.urls', namespace='auth')),
     path('vacancies/', include('vacancies.urls', namespace='vacancies')),
     path('account/', include('account.urls', namespace='account')),
+    path('applications/', include('applications.urls', namespace='appli'))
 ]
 
 if settings.DEBUG:

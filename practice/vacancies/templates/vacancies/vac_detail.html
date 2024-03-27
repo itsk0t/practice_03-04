@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'root.html' %}
 
-</body>
-</html>
+{% block title %}Vacancies Detail{% endblock %}
+
+<div>
+    {% block content %}
+    <div class="p-3">
+        <div class="card">
+            <div class="card-header">
+                {{ vac_detail.employer_id }}
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{ vac_detail.title }} <br>
+                    {{ vac_detail.salary}}
+                </h5>
+                <p class="card-text">
+                    <b>Сфера деятельности: </b>{{ vac_detail.field_activity }} <br>
+                    <b>График работы: </b>{{ vac_detail.schedule }} <br>
+                    <b>Частота выплат: </b>{{ vac_detail.payments }} <br>
+                    <b>Опыт работы: </b>{{ vac_detail.experience }} <br>
+                    <b>В том числе для кандидатов: </b>{{ vac_detail.including_for }} <br>
+                    <b>Что получают работники: </b>{{ vac_detail.inventory }} <br>
+                    <b>Адрес: </b>{{ vac_detail.address }} <br>
+                </p>
+                <p class="card-text">
+                    {{ vac_detail.description }}
+                </p>
+                <p class="card-text mt-4"><small class="text-body-secondary">{{ vac_detail.date }}</small></p>
+                <a href="#" class="btn btn-primary">OK?</a>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</div>

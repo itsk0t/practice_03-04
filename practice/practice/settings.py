@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'auth.apps.AuthConfig',
     'vacancies.apps.VacanciesConfig',
     'account.apps.AccountConfig',
+    'applications.apps.ApplicationsConfig',
 ]
 
 MIDDLEWARE = [

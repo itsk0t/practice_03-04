@@ -5,10 +5,19 @@
 <div>
     {% block content %}
     <aside>
-
+        <form class="d-flex " role="search" method="get" action="{% url 'vacancies:search' %}">
+            {% csrf_token %}
+            <input class="form-control" type="search" name="q" placeholder="Search" aria-label="Поиск">
+            <button class="btn btn-outline-success w-25" type="submit">Ok</button>
+        </form>
     </aside>
     <main class="">
         <div class="pt-3 ps-3 mb-3 me-3">
+            <form class="d-flex mb-3" role="search" method="get" action="{% url 'vacancies:search' %}">
+                {% csrf_token %}
+                <input class="form-control" type="search" name="q" placeholder="Search" aria-label="Поиск">
+                <button class="btn btn-outline-success" type="submit">Ok</button>
+            </form>
             {% for el in vac%}
             <div class="card mb-3 w-100">
                 <div class="row g-0">

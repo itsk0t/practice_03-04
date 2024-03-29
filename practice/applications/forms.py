@@ -32,3 +32,13 @@ class CommentsForm(forms.ModelForm):
             'body': forms.Textarea(attrs={'class': 'form-control w-75', 'placeholder': 'Введите текст'}),
             # 'date': forms.DateTimeField(attrs={'class': 'form-control w-75', 'placeholder': 'Дата публикации'})
         }
+
+
+class UpdateStatusForm(forms.ModelForm):
+    class Meta:
+        model = Application
+        fields = ['status_id']
+
+        widgets = {
+            'status_id': forms.Select()
+        }

@@ -1,8 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.models import User
-from django.views.generic import DetailView, UpdateView
-
-from applications.forms import CommentsForm
+from django.views.generic import UpdateView
+from applications.forms import CommentsForm, UpdateStatusForm
 from applications.models import Application, Comments
 from vacancies.models import Vacancies
 
@@ -40,3 +39,9 @@ def your_vac_detail_view(request, pk):
     return render(request, 'account/your_vac_detail.html',
                   {'y_vac_det': y_vac_det, 'appli_vac_detail': appli_vac_detail, 'form': form})
 
+
+class StatusUpdateView(UpdateView):
+    model = Application
+    template_name = 'account/status_update.html'
+    success_url = '/account/'
+    form_class = UpdateStatusForm

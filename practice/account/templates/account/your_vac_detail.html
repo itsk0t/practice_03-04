@@ -39,13 +39,14 @@
                 <div class="card-body">
                     <p class="card-text">{{ el.full_name }}</p>
                     <p class="card-text">{{ el.phone_number }}</p>
-                    <p class="card-text">{{ el.status_id }} <span><button type="button"
-                                                                          class="btn btn-primary"
-                                                                          data-bs-toggle="modal"
-                                                                          data-bs-target="#exampleModal2">
-                                                                Update Status
-                                                            </button></span></p>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                    <p class="card-text">{{ el.status_id }} <span><a href="{% url 'account:status_update' el.id %}" class="btn btn-success">Update Status</a></span><br>
+<!--                    <p class="card-text">{{ el.status_id }} <span><button type="button"-->
+<!--                                                                          class="btn btn-primary"-->
+<!--                                                                          data-bs-toggle="modal"-->
+<!--                                                                          data-bs-target="#exampleModal2">-->
+<!--                                                                Update Status-->
+<!--                                                            </button></span></p>-->
+                    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal"
                             data-bs-target="#exampleModal1">
                         Create Comment
                     </button>

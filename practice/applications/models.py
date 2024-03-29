@@ -23,8 +23,22 @@ class Application(models.Model):
     phone_number = models.CharField('Номер телефона', max_length=32)
 
     def __str__(self):
-        return self.user_id
+        return self.full_name
 
     class Meta:
         verbose_name = 'Заявка'
         verbose_name_plural = 'Заявки'
+
+
+class Comments(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
+    application_id = models.ForeignKey(Application, on_delete=models.CASCADE, verbose_name='Заявка')
+    body = models.TextField('Текст комметария')
+    date = models.DateTimeField('Дата публикации', default='2024-03-28 01:12')
+
+    def __str__(self):
+        return self.body
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'

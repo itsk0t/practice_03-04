@@ -9,12 +9,30 @@
             <h2>Your Applications</h2>
             <div>
                 {% for appli in your_appli %}
-                <div class="card">
+                <div class="card mt-3">
                     <div class="card-body">
                         <h5 class="card-title">{{ appli.vacancies_id }}</h5>
                         <p class="card-text">{{ appli.status_id }}</p>
                         <a href="{% url 'appli:appli_delete' appli.id %}" class="btn btn-danger">Delete</a>
+                        <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Open Comments
+                        </button>
+                        <div class="collapse mt-3 custom_card" id="collapseExample">
+                            <div class="card card-body">
+                                {% for com in comments_appli %}
+                                <div class="card p-3 m-2">
+                                    <p class="card-text">{{ com.user_id }}</p>
+                                    <p class="card-text">{{ com.body }}</p>
+                                    <p class="card-text"><small class="text-body-secondary">{{ com.date }}</small></p>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
                     </div>
+                </div>
+                <div>
+
                 </div>
                 {% endfor %}
             </div>
@@ -39,7 +57,8 @@
                                     {{ vac.schedule}} &#183; {{ vac.payments }} &#183; {{ vac.experience }} <br>
                                     {{ vac.description|slice:":100"}}
                                 </p>
-                                <a href="{% url 'vacancies:vac_detail' vac.id %}" class="btn btn-primary">Detail</a>
+                                <a href="{% url 'account:yor_vacancies_detail' vac.id %}"
+                                   class="btn btn-primary">Detail</a>
                                 <a href="{% url 'vacancies:vac_delete' vac.id %}" class="btn btn-danger">Delete</a>
                                 <a href="{% url 'vacancies:vac_update' vac.id %}" class="btn btn-success">Update</a>
                                 <p class="card-text mt-4"><small class="text-body-secondary">{{ vac.date }}</small></p>

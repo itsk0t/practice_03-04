@@ -1,0 +1,94 @@
+{% extends 'root.html' %}
+
+{% block title %}Your Vacancies Detail{% endblock %}
+
+<div>
+    {% block content %}
+    <div>
+        <div class="p-3">
+            <div class="card">
+                <div class="card-header">
+                    {{ y_vac_det.employer_id }}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ y_vac_det.title }} <br>
+                        {{ y_vac_det.salary}} &#8381;
+                    </h5>
+                    <p class="card-text">
+                        <b>Сфера деятельности: </b>{{ y_vac_det.field_activity }} <br>
+                        <b>График работы: </b>{{ y_vac_det.schedule }} <br>
+                        <b>Частота выплат: </b>{{ y_vac_det.payments }} <br>
+                        <b>Опыт работы: </b>{{ y_vac_det.experience }} <br>
+                        <b>В том числе для кандидатов: </b>{{ y_vac_det.including_for }} <br>
+                        <b>Что получают работники: </b>{{ y_vac_det.inventory }} <br>
+                        <b>Адрес: </b>{{ y_vac_det.address }} <br>
+                    </p>
+                    <p class="card-text">
+                        {{ y_vac_det.description }}
+                    </p>
+                    <p class="card-text mt-4"><small class="text-body-secondary">{{ y_vac_det.date }}</small></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-3">
+            <h1 class="mb-4">Applications for vacancies</h1>
+            {% for el in appli_vac_detail %}
+            <div class="card mt-3">
+                <div class="card-body">
+                    <p class="card-text">{{ el.full_name }}</p>
+                    <p class="card-text">{{ el.phone_number }}</p>
+                    <p class="card-text">{{ el.status_id }} <span><button type="button"
+                                                                          class="btn btn-primary"
+                                                                          data-bs-toggle="modal"
+                                                                          data-bs-target="#exampleModal2">
+                                                                Update Status
+                                                            </button></span></p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal1">
+                        Create Comment
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <!-- Модальное окно Create Comment-->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Comment</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-success mt-2">OK</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно Update Status-->
+    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Status</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</div>
+

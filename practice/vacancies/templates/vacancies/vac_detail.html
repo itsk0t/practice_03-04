@@ -27,7 +27,40 @@
                     {{ vac_detail.description }}
                 </p>
                 <p class="card-text mt-4"><small class="text-body-secondary">{{ vac_detail.date }}</small></p>
-                <a href="{% url 'appli:appli' %}" class="btn btn-primary">OK?</a>
+
+            </div>
+        </div>
+
+        <hr style="" class="w-100 mt-4 mb-3">
+
+        <div  class="mt-3">
+            <h5>Create Application to Vacancies</h5>
+            <form class="mt-3" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required><span class="ms-2">Примите условия и соглашения</span>
+                <br>
+                <button type="submit" class="btn btn-success mt-2">OK</button>
+            </form>
+        </div>
+
+
+    </div>
+
+    <!-- Модальное окно -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Вы не авторизовались</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body d-flex flex-column align-items-center">
+                    <a class="btn btn-primary w-75" href="{% url 'auth:register' %}">Регистрация</a>
+                    <a class="btn btn-primary w-75 mt-3" href="{% url 'auth:login' %}">Войти</a>
+                </div>
             </div>
         </div>
     </div>

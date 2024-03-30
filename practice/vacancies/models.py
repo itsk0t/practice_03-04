@@ -15,7 +15,7 @@ class Vacancies(models.Model):
     inventory = models.CharField('Что получают работники', max_length=256)
     address = models.CharField('Адрес', max_length=256)
     description = models.TextField('Описание')
-    date = models.DateTimeField('Дата публикации', default='2024-03-28 01:12')
+    date = models.DateTimeField('Дата публикации', auto_now_add=True)
 
     def __str__(self):
         return self.title

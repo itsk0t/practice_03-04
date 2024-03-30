@@ -15,16 +15,18 @@
                         <p class="card-text">{{ appli.status_id }}</p>
                         <a href="{% url 'appli:appli_delete' appli.id %}" class="btn btn-danger">Delete</a>
                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                                data-bs-target="#collapseExample{{appli.id}}" aria-expanded="false" aria-controls="collapseExample">
                             Open Comments
                         </button>
-                        <div class="collapse mt-3 custom_card" id="collapseExample">
+                        <div class="collapse mt-3 custom_card" id="collapseExample{{appli.id}}">
                             <div class="card card-body">
                                 {% for com in comments_appli %}
                                 <div class="card p-3 m-2">
                                     <p class="card-text">{{ com.user_id }}</p>
                                     <p class="card-text">{{ com.body }}</p>
                                     <p class="card-text"><small class="text-body-secondary">{{ com.date }}</small></p>
+
+                                    <p class="card-text">{{ com.application_id }}</p>
                                 </div>
                                 {% endfor %}
                             </div>

@@ -5,7 +5,7 @@ from applications.models import Application, Comments
 class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
-        fields = ['vacancies_id',
+        fields = [
                   'full_name',
                   'phone_number',
                   ]
@@ -21,7 +21,7 @@ class ApplicationForm(forms.ModelForm):
 class CommentsForm(forms.ModelForm):
     class Meta:
         model = Comments
-        fields = ['application_id',
+        fields = [
                   'body',
                   # 'date'
                   ]

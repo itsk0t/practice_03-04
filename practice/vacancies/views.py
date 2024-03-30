@@ -1,5 +1,8 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, DeleteView, UpdateView
+from django.views.generic.edit import FormMixin
+
+from applications.forms import ApplicationForm
 from applications.models import Application
 from vacancies.forms import VacanciesCreateForm
 from vacancies.models import Vacancies
@@ -9,12 +12,29 @@ class VacanciesListView(ListView):
     model = Vacancies
     template_name = 'vacancies/vac_list.html'
     context_object_name = 'vac'
+    ordering = '-date'
 
 
-class VacanciesDetailView(DetailView):
+class VacanciesDetailView(FormMixin, DetailView):
     model = Vacancies
     template_name = 'vacancies/vac_detail.html'
     context_object_name = 'vac_detail'
+    form_class = ApplicationForm
+    success_url = '/account/'
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.vacancies_id = self.get_object()
+        self.object.user_id = self.request.user
+        self.object.save()
+        return super().form_valid(form)
 
 
 def vacancies_create_view(request):

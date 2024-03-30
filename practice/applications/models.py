@@ -34,7 +34,7 @@ class Comments(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Пользователь')
     application_id = models.ForeignKey(Application, on_delete=models.CASCADE, verbose_name='Заявка')
     body = models.TextField('Текст комметария')
-    date = models.DateTimeField('Дата публикации', default='2024-03-28 01:12')
+    date = models.DateTimeField('Дата публикации', auto_now_add=True)
 
     def __str__(self):
         return self.body

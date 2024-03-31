@@ -9,7 +9,7 @@ class VacanciesCreateForm(forms.ModelForm):
         fields = ['image',
                   'title',
                   'salary',
-                  'field_activity',
+                  'category_id',
                   'schedule',
                   'payments',
                   'experience',
@@ -22,8 +22,8 @@ class VacanciesCreateForm(forms.ModelForm):
 
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control w-75', 'placeholder': 'Название'}),
-            'salary': forms.TextInput(attrs={'class': 'form-control w-75', 'placeholder': 'Зарплата'}),
-            'field_activity': forms.TextInput(attrs={'class': 'form-control w-75', 'placeholder': 'Сфера деятельности'}),
+            'salary': forms.TextInput(attrs={'class': 'form-control w-75', 'placeholder': 'Зарпалата'}),
+            'category_id': forms.Select(),
             'schedule': forms.TextInput(attrs={'class': 'form-control w-75', 'placeholder': 'График работы'}),
             'payments': forms.TextInput(attrs={'class': 'form-control w-75', 'placeholder': 'Частота выплат'}),
             'experience': forms.TextInput(attrs={'class': 'form-control w-75', 'placeholder': 'Опыт работы'}),

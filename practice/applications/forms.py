@@ -21,7 +21,7 @@ class ApplicationForm(forms.ModelForm):
 class CommentsForm(forms.ModelForm):
     class Meta:
         model = Comments
-        fields = [
+        fields = ['application_id',
                   'body',
                   # 'date'
                   ]

@@ -12,10 +12,10 @@
             <div class="card-body">
                 <h5 class="card-title">
                     {{ vac_detail.title }} <br>
-                    {{ vac_detail.salary}} &#8381;
+                    {{ vac_detail.salary }} &#8381;
                 </h5>
                 <p class="card-text">
-                    <b>Сфера деятельности: </b>{{ vac_detail.field_activity }} <br>
+                    <b>Сфера деятельности: </b>{{ vac_detail.category_id }} <br>
                     <b>График работы: </b>{{ vac_detail.schedule }} <br>
                     <b>Частота выплат: </b>{{ vac_detail.payments }} <br>
                     <b>Опыт работы: </b>{{ vac_detail.experience }} <br>
@@ -34,7 +34,7 @@
         <hr style="" class="w-100 mt-4 mb-3">
 
         <div  class="mt-3">
-            <h5>Create Application to Vacancies</h5>
+            <h5>Create Application for Vacancies</h5>
             <form class="mt-3" action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}

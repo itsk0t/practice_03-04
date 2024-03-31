@@ -1,3 +1,4 @@
+from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView, DeleteView, UpdateView
 from django.views.generic.edit import FormMixin
@@ -24,6 +25,7 @@ class VacanciesDetailView(FormMixin, DetailView):
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
+
         if form.is_valid():
             return self.form_valid(form)
         else:

@@ -33,7 +33,7 @@ def your_vac_detail_view(request, pk):
     form = CommentsForm(request.POST, request.FILES)
     if form.is_valid():
         vacancies = form.save(commit=False)
-        # vacancies.application_id =
+
         vacancies.user_id = request.user
         vacancies.save()
 
@@ -42,7 +42,6 @@ def your_vac_detail_view(request, pk):
 
     return render(request, 'account/your_vac_detail.html',
                   {'y_vac_det': y_vac_det, 'appli_vac_detail': appli_vac_detail, 'form': form})
-
 
 
 class StatusUpdateView(UpdateView):

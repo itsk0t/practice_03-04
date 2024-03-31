@@ -21,7 +21,7 @@ class Vacancies(models.Model):
     category_id = models.ForeignKey(CategoryVacancies, on_delete=models.CASCADE, verbose_name='Категория', default=1)
     schedule = models.CharField('График работы', max_length=64)
     payments = models.CharField('Частота выплат', max_length=64)
-    experience = models.CharField('Опыт работы', max_length=64)
+    experience = models.CharField('Опыт работы', max_length=64, default='Без опыта')
     including_for = models.CharField('В том числе для кандидатов', max_length=256)
     inventory = models.CharField('Что получают работники', max_length=256)
     address = models.CharField('Адрес', max_length=256)

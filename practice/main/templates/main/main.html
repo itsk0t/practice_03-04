@@ -1,0 +1,49 @@
+{% extends 'root.html' %}
+
+{% block title %}Main{% endblock %}
+
+{% block content %}
+<div class="p-3">
+    <div>
+        <p class="card-text">
+            Откройте для себя платформу для поиска работы, которая расширяет ваши возможности. WorkExplorer — это ваш
+            надежный проводник в мире вакансий, предоставляющий: <br>
+            <b> - Огромная база вакансий:</b> Исследуйте тысячи актуальных вакансий от ведущих работодателей в различных
+            отраслях. <br>
+            <b> - Персонализированный поиск:</b> Находите вакансии, соответствующие вашим навыкам, интересам и карьере.
+            <br>
+            <b> - Быстрое и простое применение:</b> Подайте заявку на вакансии в несколько кликов. <br>
+            <b> - Отслеживание заявок:</b> Будьте в курсе статуса своих заявок. <br>
+            Если вы ищете новую карьеру или мечтаете о продвижении по службе, присоединяйтесь к WorkExplorer и начните
+            свое карьерное путешествие сегодня!
+        </p>
+    </div>
+
+    <hr style="" class="w-100 mt-4 mb-4">
+
+    <div>
+        <h2>Latest Vacancies</h2>
+        {% for el in main%}
+        <div class="card mb-3 w-75">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{ el.image.url }}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ el.title }}</h4>
+                        <p class="card-text">
+                            <b>{{ el.salary }} &#8381;</b> <br>
+                            {{ el.schedule}} &#183; {{ el.payments }} &#183; {{ el.experience }} <br>
+                            {{ el.description|slice:":100"}}
+                        </p>
+                        <a href="{% url 'vacancies:vac_detail' el.id %}" class="btn btn-primary">Detail</a>
+                        <p class="card-text mt-4"><small class="text-body-secondary">{{ el.date }}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -18,6 +18,11 @@ def vacancies_list_view(request):
     categories = CategoryVacancies.objects.all()
     vacancies = Vacancies.objects.all()
 
+    # if request.method == 'GET':
+    #     selected_experience = 'Без опыта'
+    #     if selected_experience:
+    #         vacancies = vacancies.filter(experience__in=selected_experience)
+
     if request.method == 'GET':
         min_price = request.GET.get('min_price')
 
@@ -84,7 +89,7 @@ class VacanciesUpdateView(UpdateView):
 
 
 class Search(ListView):
-
+    model = Vacancies
     template_name = 'vacancies/vac_list.html'
     context_object_name = 'vac'
 

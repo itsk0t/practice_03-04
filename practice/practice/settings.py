@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'vacancies.apps.VacanciesConfig',
     'account.apps.AccountConfig',
     'applications.apps.ApplicationsConfig',
+    'main.apps.MainConfig',
 ]
 
 MIDDLEWARE = [

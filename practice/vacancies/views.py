@@ -19,6 +19,12 @@ def vacancies_list_view(request):
     vacancies = Vacancies.objects.all()
 
     if request.method == 'GET':
+        min_price = request.GET.get('min_price')
+
+        if min_price:
+            vacancies = vacancies.filter(salary__gte=min_price)
+
+    if request.method == 'GET':
         selected_categories = request.GET.getlist('category')
         if selected_categories:
             vacancies = vacancies.filter(category_id__title__in=selected_categories)

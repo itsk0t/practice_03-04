@@ -19,11 +19,15 @@
             <div class="collapse" id="collapseExample">
                 <div class="card ps-1 pe-1 pb-1">
                     {% for category in categories %}
-                        <input class="btn btn-primary mt-1" type="submit" name="category" value="{{ category.title }}">
+                    <input class="btn btn-primary mt-1" type="submit" name="category" value="{{ category.title }}">
                     {% endfor %}
                 </div>
             </div>
+        </form>
 
+        <form class="d-flex mt-3" action="{% url 'vacancies:vac_list' %}" method="GET">
+            <input class="form-control w-75" type="number" name="min_price" placeholder="З/п от:">
+            <input class="btn btn-primary w-25" type="submit" value="OK">
         </form>
 
     </aside>

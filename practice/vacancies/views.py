@@ -4,16 +4,26 @@ from django.views.generic import ListView, DetailView, DeleteView, UpdateView
 from django.views.generic.edit import FormMixin
 
 from applications.forms import ApplicationForm
-from applications.models import Application
 from vacancies.forms import VacanciesCreateForm
-from vacancies.models import Vacancies
+from vacancies.models import Vacancies, CategoryVacancies
 
 
-class VacanciesListView(ListView):
-    model = Vacancies
-    template_name = 'vacancies/vac_list.html'
-    context_object_name = 'vac'
-    ordering = '-date'
+# class VacanciesListView(ListView):
+#     model = Vacancies
+#     template_name = 'vacancies/vac_list.html'
+#     context_object_name = 'vac'
+#     ordering = '-date'
+
+def vacancies_list_view(request):
+    categories = CategoryVacancies.objects.all()
+    vacancies = Vacancies.objects.all()
+
+    if request.method == 'GET':
+        selected_categories = request.GET.getlist('category')
+        if selected_categories:
+            vacancies = vacancies.filter(category_id__title__in=selected_categories)
+
+    return render(request, 'vacancies/vac_list.html', {'categories': categories, 'vacancies': vacancies})
 
 
 class VacanciesDetailView(FormMixin, DetailView):

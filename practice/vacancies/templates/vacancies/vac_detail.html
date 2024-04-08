@@ -5,47 +5,52 @@
 <div>
     {% block content %}
     <div class="p-3">
-        <div class="card">
-            <div class="card-header">
-                {{ vac_detail.employer_id }}
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">
+        <article class="postcard dark blue p-1">
+            <div class="postcard__text">
+                <h1 class="postcard__title blue">
                     {{ vac_detail.title }} <br>
                     {{ vac_detail.salary }} &#8381;
-                </h5>
-                <p class="card-text">
-                    <b>Сфера деятельности: </b>{{ vac_detail.category_id }} <br>
-                    <b>График работы: </b>{{ vac_detail.schedule }} <br>
-                    <b>Частота выплат: </b>{{ vac_detail.payments }} <br>
-                    <b>Опыт работы: </b>{{ vac_detail.experience }} <br>
-                    <b>В том числе для кандидатов: </b>{{ vac_detail.including_for }} <br>
-                    <b>Что получают работники: </b>{{ vac_detail.inventory }} <br>
-                    <b>Адрес: </b>{{ vac_detail.address }} <br>
-                </p>
-                <p class="card-text">
-                    {{ vac_detail.description }}
-                </p>
-                <p class="card-text mt-4"><small class="text-body-secondary">{{ vac_detail.date }}</small></p>
-
+                </h1>
+                <div class="postcard__preview-txt">
+                    <p class="card-text">
+                        <b>Сфера деятельности: </b>{{ vac_detail.category_id }} <br>
+                        <b>График работы: </b>{{ vac_detail.schedule }} <br>
+                        <b>Частота выплат: </b>{{ vac_detail.payments }} <br>
+                        <b>Опыт работы: </b>{{ vac_detail.experience }} <br>
+                        <b>В том числе для кандидатов: </b>{{ vac_detail.including_for }} <br>
+                        <b>Что получают работники: </b>{{ vac_detail.inventory }} <br>
+                        <b>Адрес: </b>{{ vac_detail.address }} <br>
+                    </p>
+                    <p class="card-text w-50">
+                        {{ vac_detail.description }}
+                    </p>
+                </div>
+                <br>
+                <div class="postcard__subtitle small">
+                    <time datetime="2020-05-25 12:00:00">
+                        <i class="fas fa-calendar-alt mr-2"></i>{{ vac_detail.employer_id }} <br>
+                        <i class="fas fa-calendar-alt mr-2"></i>{{ vac_detail.date }}
+                    </time>
+                </div>
             </div>
-        </div>
+        </article>
 
         <hr style="" class="w-100 mt-4 mb-3">
 
         <div class="mt-3">
-            <h5>Create Application for Vacancies</h5>
+            <h5>Отправить заявку</h5>
             <form class="mt-3" action="" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required><span class="ms-2">Примите условия и соглашения</span>
                 <br>
                 {% if user.is_authenticated %}
-                    <button type="submit" class="btn btn-success mt-2">OK</button>
+                <button type="submit" class="btn btn-success mt-2">Отправить</button>
                 {% else %}
-                    <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        OK
-                    </button>
+                <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                    OK
+                </button>
                 {% endif %}
             </form>
         </div>
@@ -70,5 +75,55 @@
             </div>
         </div>
     </div>
+    {% endblock %}
+
+    {% block footer %}
+    <footer>
+        <div class="row justify-content-center mb-0 pt-5 pb-0 row-2 px-3">
+            <div class="col-12">
+                <div class="row row-2">
+                    <div class="col-sm-3  my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-0"><a class="nav-link" aria-current="page"
+                                                href="{% url 'main:main' %}">Главная</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3  my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-0"><a class="nav-link" aria-current="page"
+                                                href="{% url 'vacancies:vac_list' %}">Вакансии</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3  my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-0"><a class="nav-link" aria-current="page"
+                                                href="{% url 'vacancies:vac_create' %}">Добавить вакансию</a></li>
+                        </ul>
+                    </div>
+                    {% if user.is_authenticated %}
+                    <div class="col-sm-3  my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-0"><a class="nav-link" aria-current="page" href="{% url 'account:account' %}">Профиль</a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-0 pt-0 row-1 mb-0  px-sm-3 px-2">
+            <div class="col-12">
+                <div class="row my-4 row-1 no-gutters">
+                    <div class="col-sm-3 col-auto text-center"><small>&#9400; by itsk0t 2024</small></div>
+                    <div class="col-md-3 col-auto "></div>
+                    <div class="col-md-3 col-auto"></div>
+                    <div class="col  my-auto text-md-left  text-right "><small> workexplorer@gmail.com <span><img
+                            src="https://i.imgur.com/TtB6MDc.png" class="img-fluid " width="25"></span> <span><img
+                            src="https://i.imgur.com/N90KDYM.png" class="img-fluid " width="25"></span></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     {% endblock %}
 </div>

@@ -6,17 +6,18 @@
     {% block content %}
     <div class="p-3">
         <div>
-            <h2>Your Applications</h2>
+            <h2>Ваши заявки</h2>
             <div>
                 {% for appli in your_appli %}
                 <div class="card mt-3">
                     <div class="card-body">
                         <h5 class="card-title">{{ appli.vacancies_id }}</h5>
                         <p class="card-text">{{ appli.status_id }}</p>
-                        <a href="{% url 'appli:appli_delete' appli.id %}" class="btn btn-danger">Delete</a>
+                        <a href="{% url 'appli:appli_delete' appli.id %}" class="btn btn-danger">Отменить</a>
                         <button class="btn btn-primary" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapseExample{{appli.id}}" aria-expanded="false" aria-controls="collapseExample">
-                            Open Comments
+                                data-bs-target="#collapseExample{{appli.id}}" aria-expanded="false"
+                                aria-controls="collapseExample">
+                            Открыть комментарии
                         </button>
                         <div class="collapse mt-3 custom_card" id="collapseExample{{appli.id}}">
                             <div class="card card-body">
@@ -43,34 +44,39 @@
         <hr style="" class="w-100 mt-5 mb-5">
 
         <div>
-            <h2>Your Vacancies</h2>
+            <h2>Ваши вакансии</h2>
             <div>
                 {% for vac in your_vac %}
-                <div class="card mb-3 w-75">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="{{ vac.image.url }}" class="img-fluid rounded-start" alt="...">
+                <article class="postcard dark blue">
+                    <a class="postcard__img_link" href="{% url 'account:yor_vacancies_detail' vac.id %}">
+                        <img class="postcard__img" src="{{ vac.image.url }}" alt="Image Title"/>
+                    </a>
+                    <div class="postcard__text">
+                        <h1 class="postcard__title blue">{{ vac.title }}</h1>
+                        <div class="postcard__preview-txt">
+                            <b>{{ vac.salary }} &#8381;</b> <br>
+                            {{ vac.schedule}} &#183; {{ vac.payments }} &#183; {{ vac.experience }} <br>
+                            {{ vac.description|slice:":100"}}
                         </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h4 class="card-title">{{ vac.title }}</h4>
-                                <p class="card-text">
-                                    <b>{{ vac.salary }} &#8381;</b> <br>
-                                    {{ vac.schedule}} &#183; {{ vac.payments }} &#183; {{ vac.experience }} <br>
-                                    {{ vac.description|slice:":100"}}
-                                </p>
-                                <a href="{% url 'account:yor_vacancies_detail' vac.id %}"
-                                   class="btn btn-primary">Detail</a>
-                                <a href="{% url 'vacancies:vac_delete' vac.id %}" class="btn btn-danger">Delete</a>
-                                <a href="{% url 'vacancies:vac_update' vac.id %}" class="btn btn-success">Update</a>
-                                <p class="card-text mt-4"><small class="text-body-secondary">{{ vac.date }}</small></p>
-                            </div>
+                        <ul class="postcard__tagbox" style="color: #fff;">
+                            <a href="{% url 'account:yor_vacancies_detail' vac.id %}"
+                               class="btn btn-primary m-1">Подробнее</a>
+                            <a href="{% url 'vacancies:vac_delete' vac.id %}" class="btn btn-danger m-1">Удалить</a>
+                            <a href="{% url 'vacancies:vac_update' vac.id %}" class="btn btn-success m-1">Изменить</a>
+                        </ul>
+                        <br>
+                        <div class="postcard__subtitle small">
+                            <time datetime="2020-05-25 12:00:00">
+                                <i class="fas fa-calendar-alt mr-2"></i>{{ vac.date }}
+                            </time>
                         </div>
                     </div>
-                </div>
+                </article>
                 {% endfor %}
             </div>
         </div>
     </div>
     {% endblock %}
+
+
 </div>

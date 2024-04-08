@@ -22,28 +22,83 @@
     <hr style="" class="w-100 mt-4 mb-4">
 
     <div>
-        <h2>Latest Vacancies</h2>
+        <h2>Последние вакансии</h2>
         {% for el in main%}
-        <div class="card mb-3 w-75">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <img src="{{ el.image.url }}" class="img-fluid rounded-start" alt="...">
+        <article class="postcard dark blue w-75">
+            <a class="postcard__img_link" href="#">
+                <img class="postcard__img" src="{{ el.image.url }}" alt="Image Title"/>
+            </a>
+            <div class="postcard__text">
+                <h1 class="postcard__title blue">{{ el.title }}</h1>
+                <div class="postcard__preview-txt">
+                    <b>{{ el.salary }} &#8381;</b> <br>
+                    {{ el.schedule}} &#183; {{ el.payments }} &#183; {{ el.experience }} <br>
+                    {{ el.description|slice:":100"}}
                 </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ el.title }}</h4>
-                        <p class="card-text">
-                            <b>{{ el.salary }} &#8381;</b> <br>
-                            {{ el.schedule}} &#183; {{ el.payments }} &#183; {{ el.experience }} <br>
-                            {{ el.description|slice:":100"}}
-                        </p>
-                        <a href="{% url 'vacancies:vac_detail' el.id %}" class="btn btn-primary">Detail</a>
-                        <p class="card-text mt-4"><small class="text-body-secondary">{{ el.date }}</small></p>
+                <ul class="postcard__tagbox">
+                    <a href="{% url 'vacancies:vac_detail' el.id %}" class="btn btn-primary btn-rounded w-25"
+                       style="color: #fff;">Подробнее</a>
+                </ul>
+                <br>
+                <div class="postcard__subtitle small">
+                    <time datetime="2020-05-25 12:00:00">
+                        <i class="fas fa-calendar-alt mr-2"></i>{{ el.date }}
+                    </time>
+                </div>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+
+
+</div>
+{% endblock %}
+
+{% block footer %}
+<footer>
+    <div class="row justify-content-center mb-0 pt-5 pb-0 row-2 px-3">
+            <div class="col-12">
+                <div class="row row-2">
+                    <div class="col-sm-3  my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-0"><a class="nav-link" aria-current="page"
+                                                href="{% url 'main:main' %}">Главная</a></li>
+                        </ul>
                     </div>
+                    <div class="col-sm-3  my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-0"><a class="nav-link" aria-current="page"
+                                                href="{% url 'vacancies:vac_list' %}">Вакансии</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3  my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-0"><a class="nav-link" aria-current="page"
+                                                href="{% url 'vacancies:vac_create' %}">Добавить вакансию</a></li>
+                        </ul>
+                    </div>
+                    {% if user.is_authenticated %}
+                    <div class="col-sm-3  my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-0"><a class="nav-link" aria-current="page" href="{% url 'account:account' %}">Профиль</a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
-        {% endfor %}
+    <div class="row justify-content-center mt-0 pt-0 row-1 mb-0  px-sm-3 px-2">
+        <div class="col-12">
+            <div class="row my-4 row-1 no-gutters">
+                <div class="col-sm-3 col-auto text-center"><small>&#9400; by itsk0t 2024</small></div>
+                <div class="col-md-3 col-auto "></div>
+                <div class="col-md-3 col-auto"></div>
+                <div class="col  my-auto text-md-left  text-right "><small> workexplorer@gmail.com <span><img
+                        src="https://i.imgur.com/TtB6MDc.png" class="img-fluid " width="25"></span> <span><img
+                        src="https://i.imgur.com/N90KDYM.png" class="img-fluid " width="25"></span></small></div>
+            </div>
+        </div>
     </div>
-</div>
+</footer>
 {% endblock %}

@@ -7,7 +7,56 @@
     <form method="post" enctype="multipart/form-data" class="p-3">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-success mt-2">OK</button>
+        <button type="submit" class="btn btn-success mt-2">Готово</button>
     </form>
+    {% endblock %}
+
+    {% block footer %}
+    <footer>
+        <div class="row justify-content-center mb-0 pt-5 pb-0 row-2 px-3">
+            <div class="col-12">
+                <div class="row row-2">
+                    <div class="col-sm-3  my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-0"><a class="nav-link" aria-current="page"
+                                                href="{% url 'main:main' %}">Главная</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3  my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-0"><a class="nav-link" aria-current="page"
+                                                href="{% url 'vacancies:vac_list' %}">Вакансии</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3  my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-0"><a class="nav-link" aria-current="page"
+                                                href="{% url 'vacancies:vac_create' %}">Добавить вакансию</a></li>
+                        </ul>
+                    </div>
+                    {% if user.is_authenticated %}
+                    <div class="col-sm-3  my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-0"><a class="nav-link" aria-current="page" href="{% url 'account:account' %}">Профиль</a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-0 pt-0 row-1 mb-0  px-sm-3 px-2">
+            <div class="col-12">
+                <div class="row my-4 row-1 no-gutters">
+                    <div class="col-sm-3 col-auto text-center"><small>&#9400; by itsk0t 2024</small></div>
+                    <div class="col-md-3 col-auto "></div>
+                    <div class="col-md-3 col-auto"></div>
+                    <div class="col  my-auto text-md-left  text-right "><small> workexplorer@gmail.com <span><img
+                            src="https://i.imgur.com/TtB6MDc.png" class="img-fluid " width="25"></span> <span><img
+                            src="https://i.imgur.com/N90KDYM.png" class="img-fluid " width="25"></span></small></div>
+                </div>
+            </div>
+        </div>
+    </footer>
     {% endblock %}
 </div>

@@ -4,10 +4,11 @@
 
 {% block content %}
     <div style="margin: 2%;">
-        <h3>Delete?</h3><br>
+        <h3>Вы точно хотите удалить вакансию?</h3><br>
         <form method="post" style="width: 50%;">
             {% csrf_token %}
-            <button type="submit" class="btn btn-danger" style="font-size: 22px;">OK</button>
+            <button type="submit" class="btn btn-danger" style="font-size: 22px;">Подтвердить</button>
         </form>
     </div>
+
 {% endblock %}

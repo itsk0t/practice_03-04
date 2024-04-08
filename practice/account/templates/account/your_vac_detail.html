@@ -4,17 +4,14 @@
 
 <div>
     {% block content %}
-    <div>
-        <div class="p-3">
-            <div class="card">
-                <div class="card-header">
-                    {{ y_vac_det.employer_id }}
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title">
-                        {{ y_vac_det.title }} <br>
-                        {{ y_vac_det.salary}} &#8381;
-                    </h5>
+    <div class="p-3">
+        <article class="postcard dark blue">
+            <div class="postcard__text">
+                <h1 class="postcard__title blue">
+                    {{ y_vac_det.title }} <br>
+                    {{ y_vac_det.salary }} &#8381;
+                </h1>
+                <div class="postcard__preview-txt">
                     <p class="card-text">
                         <b>Сфера деятельности: </b>{{ y_vac_det.category_id }} <br>
                         <b>График работы: </b>{{ y_vac_det.schedule }} <br>
@@ -24,32 +21,39 @@
                         <b>Что получают работники: </b>{{ y_vac_det.inventory }} <br>
                         <b>Адрес: </b>{{ y_vac_det.address }} <br>
                     </p>
-                    <p class="card-text">
+                    <p class="card-text w-50">
                         {{ y_vac_det.description }}
                     </p>
-                    <p class="card-text mt-4"><small class="text-body-secondary">{{ y_vac_det.date }}</small></p>
+                </div>
+                <br>
+                <div class="postcard__subtitle small">
+                    <time datetime="2020-05-25 12:00:00">
+                        <i class="fas fa-calendar-alt mr-2"></i>{{ y_vac_det.employer_id }} <br>
+                        <i class="fas fa-calendar-alt mr-2"></i>{{ y_vac_det.date }}
+                    </time>
                 </div>
             </div>
-        </div>
+        </article>
 
-        <div class="p-3">
-            <h1 class="mb-4">Applications for vacancies</h1>
+        <div class="">
+            <h1 class="mb-4">Заявки на вакансию</h1>
             {% for el in appli_vac_detail %}
             <div class="card mt-3">
                 <div class="card-body">
                     <p class="card-text">{{ el.full_name }}</p>
                     <p class="card-text">{{ el.phone_number }}</p>
-                    <p class="card-text">{{ el.status_id }} <span><a href="{% url 'account:status_update' el.id %}" class="btn btn-success">Update Status</a></span><br>
-<!--                    <p class="card-text">{{ el.status_id }} <span><button type="button"-->
-<!--                                                                          class="btn btn-primary"-->
-<!--                                                                          data-bs-toggle="modal"-->
-<!--                                                                          data-bs-target="#exampleModal2">-->
-<!--                                                                Update Status-->
-<!--                                                            </button></span></p>-->
-                    <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal1">
-                        Create Comment
-                    </button>
+                    <p class="card-text">{{ el.status_id }} <span><a href="{% url 'account:status_update' el.id %}"
+                                                                     class="btn btn-success" style="color: #fff;">Изменить статус</a></span><br>
+                        <!--                    <p class="card-text">{{ el.status_id }} <span><button type="button"-->
+                        <!--                                                                          class="btn btn-primary"-->
+                        <!--                                                                          data-bs-toggle="modal"-->
+                        <!--                                                                          data-bs-target="#exampleModal2">-->
+                        <!--                                                                Update Status-->
+                        <!--                                                            </button></span></p>-->
+                        <button type="button" class="btn btn-primary mt-3" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal1">
+                            Добавить комментарий
+                        </button>
                 </div>
             </div>
             {% endfor %}
@@ -62,34 +66,68 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Create Comment</h5>
+                    <h5 class="modal-title">Добавить комментарий</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                 </div>
                 <div class="modal-body">
                     <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ form.as_p }}
-                        <button type="submit" class="btn btn-success mt-2">OK</button>
+                        <button type="submit" class="btn btn-success mt-2">Добавить</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    {% endblock %}
 
-    <!-- Модальное окно Update Status-->
-    <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Update Status</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-                </div>
-                <div class="modal-body">
-
+    {% block footer %}
+    <footer class="">
+        <div class="row justify-content-center mb-0 pt-5 pb-0 row-2 px-3">
+            <div class="col-12">
+                <div class="row row-2">
+                    <div class="col-sm-3  my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-0"><a class="nav-link" aria-current="page"
+                                                href="{% url 'main:main' %}">Главная</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3  my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-0"><a class="nav-link" aria-current="page"
+                                                href="{% url 'vacancies:vac_list' %}">Вакансии</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-3  my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-0"><a class="nav-link" aria-current="page"
+                                                href="{% url 'vacancies:vac_create' %}">Добавить вакансию</a></li>
+                        </ul>
+                    </div>
+                    {% if user.is_authenticated %}
+                    <div class="col-sm-3  my-sm-0 mt-5">
+                        <ul class="list-unstyled">
+                            <li class="mt-0"><a class="nav-link" aria-current="page" href="{% url 'account:account' %}">Профиль</a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
-    </div>
+        <div class="row justify-content-center mt-0 pt-0 row-1 mb-0  px-sm-3 px-2">
+            <div class="col-12">
+                <div class="row my-4 row-1 no-gutters">
+                    <div class="col-sm-3 col-auto text-center"><small>&#9400; by itsk0t 2024</small></div>
+                    <div class="col-md-3 col-auto "></div>
+                    <div class="col-md-3 col-auto"></div>
+                    <div class="col  my-auto text-md-left  text-right "><small> workexplorer@gmail.com <span><img
+                            src="https://i.imgur.com/TtB6MDc.png" class="img-fluid " width="25"></span> <span><img
+                            src="https://i.imgur.com/N90KDYM.png" class="img-fluid " width="25"></span></small></div>
+                </div>
+            </div>
+        </div>
+    </footer>
     {% endblock %}
 </div>
 

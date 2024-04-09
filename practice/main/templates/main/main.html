@@ -3,51 +3,67 @@
 {% block title %}Main{% endblock %}
 
 {% block content %}
-<div class="p-3">
-    <div>
-        <p class="card-text">
-            Откройте для себя платформу для поиска работы, которая расширяет ваши возможности. WorkExplorer — это ваш
-            надежный проводник в мире вакансий, предоставляющий: <br>
-            <b> - Огромная база вакансий:</b> Исследуйте тысячи актуальных вакансий от ведущих работодателей в различных
-            отраслях. <br>
-            <b> - Персонализированный поиск:</b> Находите вакансии, соответствующие вашим навыкам, интересам и карьере.
-            <br>
-            <b> - Быстрое и простое применение:</b> Подайте заявку на вакансии в несколько кликов. <br>
-            <b> - Отслеживание заявок:</b> Будьте в курсе статуса своих заявок. <br>
-            Если вы ищете новую карьеру или мечтаете о продвижении по службе, присоединяйтесь к WorkExplorer и начните
-            свое карьерное путешествие сегодня!
-        </p>
-    </div>
-
-    <hr style="" class="w-100 mt-4 mb-4">
-
-    <div>
-        <h2>Последние вакансии</h2>
-        {% for el in main%}
-        <article class="postcard dark blue w-75">
-            <a class="postcard__img_link" href="#">
-                <img class="postcard__img" src="{{ el.image.url }}" alt="Image Title"/>
-            </a>
-            <div class="postcard__text">
-                <h1 class="postcard__title blue">{{ el.title }}</h1>
-                <div class="postcard__preview-txt">
-                    <b>{{ el.salary }} &#8381;</b> <br>
-                    {{ el.schedule}} &#183; {{ el.payments }} &#183; {{ el.experience }} <br>
-                    {{ el.description|slice:":100"}}
-                </div>
-                <ul class="postcard__tagbox">
-                    <a href="{% url 'vacancies:vac_detail' el.id %}" class="btn btn-primary btn-rounded w-25"
-                       style="color: #fff;">Подробнее</a>
-                </ul>
-                <br>
-                <div class="postcard__subtitle small">
-                    <time datetime="2020-05-25 12:00:00">
-                        <i class="fas fa-calendar-alt mr-2"></i>{{ el.date }}
-                    </time>
+<div class="">
+    <section class="bsb-hero-5 px-3 bsb-overlay" style="background-image: url('/media/images/1.jpg'); height:700px;">
+        <div class="container">
+            <div class="row justify-content-md-center align-items-center pt-5">
+                <div class="col-12 col-md-11 col-lg-9 col-xl-8 col-xxl-7 pt-5">
+                    <h2 class="display-1 text-black text-center fw-bold mt-5">WorkExporer</h2>
                 </div>
             </div>
-        </article>
-        {% endfor %}
+        </div>
+    </section>
+    <div class="p-3">
+        <div class="d-flex">
+            <img src="/media/images/2.jpg" style="width: 500px;" class="rounded-3">
+            <p class="card-text ms-3">
+                Откройте для себя платформу для поиска работы, которая расширяет ваши возможности. WorkExplorer — это
+                ваш
+                надежный проводник в мире вакансий, предоставляющий: <br>
+                <b> - Огромная база вакансий:</b> Исследуйте тысячи актуальных вакансий от ведущих работодателей в
+                различных
+                отраслях. <br>
+                <b> - Персонализированный поиск:</b> Находите вакансии, соответствующие вашим навыкам, интересам и
+                карьере.
+                <br>
+                <b> - Быстрое и простое применение:</b> Подайте заявку на вакансии в несколько кликов. <br>
+                <b> - Отслеживание заявок:</b> Будьте в курсе статуса своих заявок. <br>
+                Если вы ищете новую карьеру или мечтаете о продвижении по службе, присоединяйтесь к WorkExplorer и
+                начните
+                свое карьерное путешествие сегодня!
+            </p>
+        </div>
+
+        <hr style="" class="w-100 mt-4 mb-4">
+
+        <div>
+            <h2>Последние вакансии</h2>
+            {% for el in main%}
+            <article class="postcard dark blue w-75">
+                <a class="postcard__img_link" href="#">
+                    <img class="postcard__img" src="{{ el.image.url }}" alt="Image Title"/>
+                </a>
+                <div class="postcard__text">
+                    <h1 class="postcard__title blue">{{ el.title }}</h1>
+                    <div class="postcard__preview-txt">
+                        <b>{{ el.salary }} &#8381;</b> <br>
+                        {{ el.schedule}} &#183; {{ el.payments }} &#183; {{ el.experience }} <br>
+                        {{ el.description|slice:":100"}}
+                    </div>
+                    <ul class="postcard__tagbox">
+                        <a href="{% url 'vacancies:vac_detail' el.id %}" class="btn btn-primary btn-rounded w-25"
+                           style="color: #fff;">Подробнее</a>
+                    </ul>
+                    <br>
+                    <div class="postcard__subtitle small">
+                        <time datetime="2020-05-25 12:00:00">
+                            <i class="fas fa-calendar-alt mr-2"></i>{{ el.date }}
+                        </time>
+                    </div>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
     </div>
 
 
@@ -57,37 +73,37 @@
 {% block footer %}
 <footer>
     <div class="row justify-content-center mb-0 pt-5 pb-0 row-2 px-3">
-            <div class="col-12">
-                <div class="row row-2">
-                    <div class="col-sm-3  my-sm-0 mt-5">
-                        <ul class="list-unstyled">
-                            <li class="mt-0"><a class="nav-link" aria-current="page"
-                                                href="{% url 'main:main' %}">Главная</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3  my-sm-0 mt-5">
-                        <ul class="list-unstyled">
-                            <li class="mt-0"><a class="nav-link" aria-current="page"
-                                                href="{% url 'vacancies:vac_list' %}">Вакансии</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-3  my-sm-0 mt-5">
-                        <ul class="list-unstyled">
-                            <li class="mt-0"><a class="nav-link" aria-current="page"
-                                                href="{% url 'vacancies:vac_create' %}">Добавить вакансию</a></li>
-                        </ul>
-                    </div>
-                    {% if user.is_authenticated %}
-                    <div class="col-sm-3  my-sm-0 mt-5">
-                        <ul class="list-unstyled">
-                            <li class="mt-0"><a class="nav-link" aria-current="page" href="{% url 'account:account' %}">Профиль</a>
-                            </li>
-                        </ul>
-                    </div>
-                    {% endif %}
+        <div class="col-12">
+            <div class="row row-2">
+                <div class="col-sm-3  my-sm-0 mt-5">
+                    <ul class="list-unstyled">
+                        <li class="mt-0"><a class="nav-link" aria-current="page"
+                                            href="{% url 'main:main' %}">Главная</a></li>
+                    </ul>
                 </div>
+                <div class="col-sm-3  my-sm-0 mt-5">
+                    <ul class="list-unstyled">
+                        <li class="mt-0"><a class="nav-link" aria-current="page"
+                                            href="{% url 'vacancies:vac_list' %}">Вакансии</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3  my-sm-0 mt-5">
+                    <ul class="list-unstyled">
+                        <li class="mt-0"><a class="nav-link" aria-current="page"
+                                            href="{% url 'vacancies:vac_create' %}">Добавить вакансию</a></li>
+                    </ul>
+                </div>
+                {% if user.is_authenticated %}
+                <div class="col-sm-3  my-sm-0 mt-5">
+                    <ul class="list-unstyled">
+                        <li class="mt-0"><a class="nav-link" aria-current="page" href="{% url 'account:account' %}">Профиль</a>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
             </div>
         </div>
+    </div>
     <div class="row justify-content-center mt-0 pt-0 row-1 mb-0  px-sm-3 px-2">
         <div class="col-12">
             <div class="row my-4 row-1 no-gutters">
